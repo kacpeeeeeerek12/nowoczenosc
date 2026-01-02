@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="pl" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nowoczesność - Blog Motoryzacyjny</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    .article-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .article-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .read-button {
+      transition: all 0.3s ease;
+    }
+    
+    .read-button:hover {
+      transform: scale(1.05);
+    }
+    
+    .page-transition {
+      animation: fadeIn 0.4s ease-in;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .back-button {
+      transition: all 0.3s ease;
+    }
+    
+    .back-button:hover {
+      transform: translateX(-5px);
+    }
+    
+    .article-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto">
+  <div id="app" class="w-full min-h-full"></div>
+  <script>
+    const defaultConfig = {
+      blog_title: "Nowoczesność",
+      article_title: "Tesla Model S",
+      article_image: "zdjęcie_1.png",
+      read_button: "Czytaj",
+      article_content: `Tesla Model S to jeden z najbardziej rozpoznawalnych samochodów elektrycznych na świecie i jednocześnie model, który w dużym stopniu wpłynął na postrzeganie elektromobilności. Od momentu swojej premiery pokazał, że auto elektryczne może pełnić rolę pełnoprawnej, luksusowej limuzyny, oferując nie tylko ekologiczny napęd, ale także wysokie osiągi i nowoczesne technologie. Model S stał się wizytówką marki Tesla oraz punktem odniesienia dla konkurencji.
+
+Stylistyka samochodu jest nowoczesna i stonowana, bez zbędnych ozdobników. Opływowy kształt nadwozia poprawia aerodynamikę i wpływa na efektywność energetyczną. Charakterystyczne, chowane klamki oraz brak klasycznego grilla podkreślają elektryczny charakter pojazdu. Wnętrze zaprojektowano w duchu minimalizmu, a większość funkcji obsługiwana jest za pomocą dużego ekranu dotykowego umieszczonego centralnie na desce rozdzielczej. Taki układ pozwala ograniczyć liczbę przycisków i tworzy wrażenie nowoczesnej, uporządkowanej przestrzeni.
+
+Tesla Model S to jeden z najbardziej znanych samochodów elektrycznych klasy premium i model, który odegrał kluczową rolę w popularyzacji elektromobilności. Od momentu debiutu udowadnia, że auto elektryczne może łączyć luksus, nowoczesne technologie oraz bardzo wysokie osiągi, bez konieczności rezygnowania z codziennej funkcjonalności. Dla wielu kierowców Model S stał się alternatywą dla tradycyjnych limuzyn z silnikami spalinowymi.
+
+Stylistyka pojazdu jest nowoczesna i podporządkowana aerodynamice. Opływowe nadwozie, chowane klamki oraz brak klasycznego grilla wpływają nie tylko na wygląd, ale także na efektywność jazdy. Wnętrze utrzymano w minimalistycznym stylu, gdzie dominującym elementem jest duży ekran dotykowy sterujący większością funkcji samochodu. Przestronna kabina oraz płaska podłoga zapewniają wysoki komfort podróżowania zarówno kierowcy, jak i pasażerom.
+
+Jednym z najważniejszych atutów Tesli Model S są osiągi. Elektryczny napęd oferuje natychmiastowy moment obrotowy, co przekłada się na bardzo dynamiczne przyspieszenie. W najmocniejszych wersjach samochód rozpędza się do 100 km/h w czasie nieco ponad 2 sekundy, co stawia go na poziomie supersamochodów. Równocześnie przyspieszanie jest płynne i ciche, a wysoka moc dostępna jest w każdej chwili, co znacząco ułatwia wyprzedzanie i jazdę autostradową.
+
+Pomimo sportowych możliwości Model S pozostaje samochodem praktycznym. Zasięg przekraczający 600 kilometrów na jednym ładowaniu pozwala na komfortowe pokonywanie długich tras, a dostęp do sieci szybkich ładowarek umożliwia sprawne uzupełnianie energii. Zaawansowane systemy wspomagania kierowcy oraz regularne aktualizacje oprogramowania zwiększają bezpieczeństwo i komfort użytkowania. Tesla Model S to przykład nowoczesnej limuzyny, która łączy wysokie osiągi z innowacyjną technologią i codzienną użytecznością.`,
+      background_color: "#f5f5f5",
+      card_color: "#ffffff",
+      text_color: "#1a1a1a",
+      primary_button: "#ff4d00",
+      accent_color: "#333333",
+      font_family: "Inter",
+      font_size: 16
+    };
+
+    let currentView = 'home';
+
+    function renderHome(config) {
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const baseFontStack = 'system-ui, -apple-system, sans-serif';
+
+      return `
+        <div class="w-full min-h-full page-transition" style="background: ${config.background_color || defaultConfig.background_color}; font-family: ${customFont}, ${baseFontStack};">
+          <header class="w-full py-12 px-6" style="background: ${config.card_color || defaultConfig.card_color}; border-bottom: 3px solid ${config.primary_button || defaultConfig.primary_button}; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+            <div class="max-w-6xl mx-auto text-center">
+              <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 12px;">
+                <div style="width: 60px; height: 3px; background: ${config.primary_button || defaultConfig.primary_button};"></div>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 11L6.5 6.5H17.5L19 11M5 11V17C5 17.5523 5.44772 18 6 18H7C7.55228 18 8 17.5523 8 17V16H16V17C16 17.5523 16.4477 18 17 18H18C18.5523 18 19 17.5523 19 17V11M5 11H19M8 13H8.01M16 13H16.01" stroke="${config.primary_button || defaultConfig.primary_button}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div style="width: 60px; height: 3px; background: ${config.primary_button || defaultConfig.primary_button};"></div>
+              </div>
+              <h1 id="blog-title" style="font-size: ${baseSize * 3}px; color: ${config.text_color || defaultConfig.text_color}; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                ${config.blog_title || defaultConfig.blog_title}
+              </h1>
+              <p style="font-size: ${baseSize * 0.95}px; color: ${config.accent_color || defaultConfig.accent_color}; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 8px;">
+                Blog Motoryzacyjny
+              </p>
+            </div>
+          </header>
+
+          <main class="w-full py-12 px-6">
+            <div class="max-w-6xl mx-auto">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="article-card overflow-hidden" style="background: ${config.card_color || defaultConfig.card_color}; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border: 2px solid #e0e0e0;">
+                  <div class="w-full" style="height: 200px; background: linear-gradient(135deg, ${config.primary_button || defaultConfig.primary_button}, ${config.accent_color || defaultConfig.accent_color}); overflow: hidden;">
+                    <img src="${config.article_image || defaultConfig.article_image}" alt="${config.article_title || defaultConfig.article_title}" class="article-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;\\\'><svg width=\\'50\\' height=\\'50\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' xmlns=\\'http://www.w3.org/2000/svg\\'><path d=\\'M5 13L9 17L19 7\\' stroke=\\'white\\' stroke-width=\\'2\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'/><circle cx=\\'12\\' cy=\\'12\\' r=\\'10\\' stroke=\\'white\\' stroke-width=\\'2\\' fill=\\'none\\'/></svg></div>';">
+                  </div>
+                  
+                  <div class="p-4">
+                    <h2 id="article-title" style="font-size: ${baseSize * 1.2}px; color: ${config.text_color || defaultConfig.text_color}; font-weight: 700; margin-bottom: 12px;">
+                      ${config.article_title || defaultConfig.article_title}
+                    </h2>
+                    <button 
+                      onclick="navigateToArticle()"
+                      class="read-button w-full py-2 px-4 font-semibold"
+                      style="background: ${config.primary_button || defaultConfig.primary_button}; color: white; font-size: ${baseSize * 0.9}px; border: none; cursor: pointer;">
+                      ${config.read_button || defaultConfig.read_button}
+                    </button>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </main>
+        </div>
+      `;
+    }
+
+    function renderArticle(config) {
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const baseFontStack = 'system-ui, -apple-system, sans-serif';
+
+      return `
+        <div class="w-full min-h-full page-transition" style="background: ${config.background_color || defaultConfig.background_color}; font-family: ${customFont}, ${baseFontStack};">
+          <header class="w-full py-6 px-6" style="background: ${config.card_color || defaultConfig.card_color}; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <div class="max-w-4xl mx-auto">
+              <button 
+                onclick="navigateToHome()"
+                class="back-button flex items-center gap-2 py-2 px-4"
+                style="background: transparent; color: ${config.accent_color || defaultConfig.accent_color}; font-size: ${baseSize}px; border: 2px solid ${config.accent_color || defaultConfig.accent_color}; cursor: pointer; font-weight: 600;">
+                <span style="font-size: ${baseSize * 1.2}px;">←</span>
+                Powrót
+              </button>
+            </div>
+          </header>
+
+          <main class="w-full py-12 px-6">
+            <div class="max-w-4xl mx-auto">
+              <article class="overflow-hidden" style="background: ${config.card_color || defaultConfig.card_color}; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border: 2px solid #e0e0e0;">
+                <div class="w-full" style="height: 400px; background: linear-gradient(135deg, ${config.primary_button || defaultConfig.primary_button}, ${config.accent_color || defaultConfig.accent_color}); overflow: hidden;">
+                  <img src="${config.article_image || defaultConfig.article_image}" alt="${config.article_title || defaultConfig.article_title}" class="article-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;\\\'><svg width=\\'120\\' height=\\'120\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' xmlns=\\'http://www.w3.org/2000/svg\\'><path d=\\'M5 13L9 17L19 7\\' stroke=\\'white\\' stroke-width=\\'2\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'/><circle cx=\\'12\\' cy=\\'12\\' r=\\'10\\' stroke=\\'white\\' stroke-width=\\'2\\' fill=\\'none\\'/></svg></div>';">
+                </div>
+                
+                <div class="p-8">
+                  <h1 id="article-detail-title" style="font-size: ${baseSize * 2.5}px; color: ${config.text_color || defaultConfig.text_color}; font-weight: 800; margin-bottom: 24px; line-height: 1.2;">
+                    ${config.article_title || defaultConfig.article_title}
+                  </h1>
+                  
+                  <div style="height: 2px; background: ${config.accent_color || defaultConfig.accent_color}; opacity: 0.3; margin-bottom: 32px;"></div>
+                  
+                  <div id="article-content" style="font-size: ${baseSize * 1.1}px; color: ${config.text_color || defaultConfig.text_color}; opacity: 0.9; line-height: 1.8; white-space: pre-line;">
+${config.article_content || defaultConfig.article_content}
+                  </div>
+                </div>
+              </article>
+            </div>
+          </main>
+        </div>
+      `;
+    }
+
+    function navigateToArticle() {
+      currentView = 'article';
+      updateView();
+    }
+
+    function navigateToHome() {
+      currentView = 'home';
+      updateView();
+    }
+
+    function updateView() {
+      const app = document.getElementById('app');
+      const config = window.elementSdk?.config || defaultConfig;
+      
+      if (currentView === 'home') {
+        app.innerHTML = renderHome(config);
+      } else {
+        app.innerHTML = renderArticle(config);
+      }
+    }
+
+    async function onConfigChange(config) {
+      updateView();
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.card_color || defaultConfig.card_color,
+            set: (value) => {
+              config.card_color = value;
+              window.elementSdk.setConfig({ card_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_button || defaultConfig.primary_button,
+            set: (value) => {
+              config.primary_button = value;
+              window.elementSdk.setConfig({ primary_button: value });
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["blog_title", config.blog_title || defaultConfig.blog_title],
+        ["article_title", config.article_title || defaultConfig.article_title],
+        ["article_image", config.article_image || defaultConfig.article_image],
+        ["read_button", config.read_button || defaultConfig.read_button],
+        ["article_content", config.article_content || defaultConfig.article_content]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    updateView();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b7a8bd0c3abbbc6',t:'MTc2NzM1OTk0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
