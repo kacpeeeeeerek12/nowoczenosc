@@ -51,6 +51,15 @@
       transform: translateX(-5px);
     }
     
+    .article-image-container {
+      width: 100%;
+      background: #e0e0e0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
     .article-image {
       width: 100%;
       height: 100%;
@@ -67,7 +76,7 @@
     const defaultConfig = {
       blog_title: "Nowoczesność",
       article_title: "Tesla Model S",
-      article_image: "./zdjęcie_1.png",
+      article_image: "zdjęcie_1.png",
       read_button: "Czytaj",
       article_content: `Tesla Model S to jeden z najbardziej rozpoznawalnych samochodów elektrycznych na świecie i jednocześnie model, który w dużym stopniu wpłynął na postrzeganie elektromobilności. Od momentu swojej premiery pokazał, że auto elektryczne może pełnić rolę pełnoprawnej, luksusowej limuzyny, oferując nie tylko ekologiczny napęd, ale także wysokie osiągi i nowoczesne technologie. Model S stał się wizytówką marki Tesla oraz punktem odniesienia dla konkurencji.
 
@@ -75,7 +84,7 @@ Stylistyka samochodu jest nowoczesna i stonowana, bez zbędnych ozdobników. Op�
 
 Tesla Model S to jeden z najbardziej znanych samochodów elektrycznych klasy premium i model, który odegrał kluczową rolę w popularyzacji elektromobilności. Od momentu debiutu udowadnia, że auto elektryczne może łączyć luksus, nowoczesne technologie oraz bardzo wysokie osiągi, bez konieczności rezygnowania z codziennej funkcjonalności. Dla wielu kierowców Model S stał się alternatywą dla tradycyjnych limuzyn z silnikami spalinowymi.
 
-Stylistyka pojazdu jest nowoczesna i podporządkowana aerodynamice. Opływowe nadwozie, chowane klamki oraz brak klasycznego grilla wpływają nie tylko na wygl��d, ale także na efektywność jazdy. Wnętrze utrzymano w minimalistycznym stylu, gdzie dominującym elementem jest duży ekran dotykowy sterujący większością funkcji samochodu. Przestronna kabina oraz płaska pod��oga zapewniają wysoki komfort podróżowania zarówno kierowcy, jak i pasażerom.
+Stylistyka pojazdu jest nowoczesna i podporządkowana aerodynamice. Opływowe nadwozie, chowane klamki oraz brak klasycznego grilla wpływają nie tylko na wygląd, ale także na efektywność jazdy. Wnętrze utrzymano w minimalistycznym stylu, gdzie dominującym elementem jest duży ekran dotykowy sterujący większością funkcji samochodu. Przestronna kabina oraz płaska podłoga zapewniają wysoki komfort podróżowania zarówno kierowcy, jak i pasażerom.
 
 Jednym z najważniejszych atutów Tesli Model S są osiągi. Elektryczny napęd oferuje natychmiastowy moment obrotowy, co przekłada się na bardzo dynamiczne przyspieszenie. W najmocniejszych wersjach samochód rozpędza się do 100 km/h w czasie nieco ponad 2 sekundy, co stawia go na poziomie supersamochodów. Równocześnie przyspieszanie jest płynne i ciche, a wysoka moc dostępna jest w każdej chwili, co znacząco ułatwia wyprzedzanie i jazdę autostradową.
 
@@ -120,8 +129,8 @@ Pomimo sportowych możliwości Model S pozostaje samochodem praktycznym. Zasięg
             <div class="max-w-6xl mx-auto">
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <article class="article-card overflow-hidden" style="background: ${config.card_color || defaultConfig.card_color}; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border: 2px solid #e0e0e0;">
-                  <div class="w-full" style="height: 200px; background: #e0e0e0; overflow: hidden;">
-                    <img src="${config.article_image || defaultConfig.article_image}" alt="${config.article_title || defaultConfig.article_title}" class="article-image" onerror="this.style.display='none';">
+                  <div class="article-image-container" style="height: 200px;">
+                    <img src="${config.article_image || defaultConfig.article_image}" alt="${config.article_title || defaultConfig.article_title}" class="article-image">
                   </div>
                   
                   <div class="p-4">
@@ -165,8 +174,8 @@ Pomimo sportowych możliwości Model S pozostaje samochodem praktycznym. Zasięg
           <main class="w-full py-12 px-6">
             <div class="max-w-4xl mx-auto">
               <article class="overflow-hidden" style="background: ${config.card_color || defaultConfig.card_color}; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); border: 2px solid #e0e0e0;">
-                <div class="w-full" style="height: 400px; background: #e0e0e0; overflow: hidden;">
-                  <img src="${config.article_image || defaultConfig.article_image}" alt="${config.article_title || defaultConfig.article_title}" class="article-image" onerror="this.style.display='none';">
+                <div class="article-image-container" style="height: 400px;">
+                  <img src="${config.article_image || defaultConfig.article_image}" alt="${config.article_title || defaultConfig.article_title}" class="article-image">
                 </div>
                 
                 <div class="p-8">
@@ -290,5 +299,5 @@ ${config.article_content || defaultConfig.article_content}
 
     updateView();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b7a9d0a17f670c2',t:'MTc2NzM2MDY1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b7abc2da6bbc931',t:'MTc2NzM2MTkyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
